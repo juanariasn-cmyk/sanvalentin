@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>¿Quieres ser mi San Valentín?</title>
+
+<style>
+body{
+    margin:0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #89CFF0, #bde0fe);
+    text-align:center;
+    color:white;
+    overflow:hidden;
+}
+
+/* Corazones flotando */
+.corazon{
+    position:fixed;
+    bottom:-20px;
+    font-size:20px;
+    animation: flotar 6s linear infinite;
+    opacity:0.8;
+}
+@keyframes flotar{
+    to{
+        transform: translateY(-110vh);
+        opacity:0;
+    }
+}
+
+h1{
+    margin-top:25px;
+    font-size:30px;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.4);
+}
+
+.monito{
+    margin-top:20px;
+    animation: latido 1.5s infinite;
+}
+@keyframes latido{
+    0%,100%{transform:scale(1);}
+    50%{transform:scale(1.05);}
+}
+
+.monito img{
+    width:220px;
+    height:220px;
+    object-fit:cover;
+    border-radius:25px;
+    box-shadow:0 0 25px rgba(0,0,0,0.5);
+}
+
+.dialogo{
+    font-size:22px;
+    margin-top:15px;
+    min-height:30px;
+    text-shadow: 1px 1px 6px rgba(0,0,0,0.4);
+}
+
+.botones{
+    margin-top:40px;
+    position:relative;
+    height:250px;
+}
+
+button{
+    padding:15px 35px;
+    font-size:22px;
+    border:none;
+    border-radius:15px;
+    cursor:pointer;
+    position:absolute;
+    transition: all 0.3s ease;
+    box-shadow:0 8px 20px rgba(0,0,0,0.3);
+}
+
+#si{
+    background-color:#4ea8de;
+    color:white;
+    left:28%;
+}
+
+#no{
+    background-color:#1d3557;
+    color:white;
+    left:55%;
+}
+
+.mensaje{
+    display:none;
+    margin-top:25px;
+    font-size:24px;
+    animation: aparecer 1s ease forwards;
+}
+
+@keyframes aparecer{
+    from{opacity:0; transform:translateY(20px);}
+    to{opacity:1; transform:translateY(0);}
+}
+</style>
+</head>
+
+<body>
+
+<h1>¿Quieres ser mi San Valentín?🩵</h1>
+
+<div class="monito">
+    <img id="imagenMonito" src="feliz.jpg" alt="monito">
+</div>
+
+<div class="dialogo" id="dialogo"></div>
+
+<div class="botones">
+    <button id="si">Sí 🩵</button>
+    <button id="no">No 😢</button>
+</div>
+
+<div class="mensaje" id="mensaje">
+    🩵Sabía que dirías que sí Mi amor , Mi niña hermosa 🩵?<br>
+    ¡Nos vemos este fin hermosa 😉  ! 🥰Te quiero Mi enojona🩵?
+</div>
+
+<script>
+const botonNo = document.getElementById("no");
+const botonSi = document.getElementById("si");
+const mensaje = document.getElementById("mensaje");
+const imagen = document.getElementById("imagenMonito");
+const dialogo = document.getElementById("dialogo");
+
+/* Corazones azules flotando */
+setInterval(()=>{
+    const corazon = document.createElement("div");
+    corazon.className="corazon";
+    corazon.innerHTML="🩵";
+    corazon.style.left=Math.random()*100+"vw";
+    corazon.style.fontSize=(15+Math.random()*20)+"px";
+    document.body.appendChild(corazon);
+    setTimeout(()=>corazon.remove(),6000);
+},400);
+
+botonNo.addEventListener("touchstart", accionNo);
+botonNo.addEventListener("mouseover", accionNo);
+
+function moverBoton(){
+    const x = Math.random() * (window.innerWidth - 120);
+    const y = Math.random() * (window.innerHeight - 120);
+    botonNo.style.left = x + "px";
+    botonNo.style.top = y + "px";
+}
+
+function accionNo(){
+    imagen.src = "triste.jpg";
+    dialogo.innerHTML = "¿Por qué no? 😢💔<br>No me quieres :(...";
+    moverBoton();
+}
+
+botonSi.addEventListener("click", function(){
+    imagen.src = "feliz.jpg";
+    dialogo.innerHTML = "¡sí! 🩵🥰";
+    mensaje.style.display = "block";
+});
+</script>
+
+</body>
+</html>
+
